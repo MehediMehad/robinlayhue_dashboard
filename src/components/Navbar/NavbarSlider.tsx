@@ -87,7 +87,7 @@ const NavbarSlider = ({ isOpen, toggleSidebar }: SidebarProps) => {
         <div className="flex pl-8 items-center border-b border-[#74747480] min-h-[90px] max-h-[90px]">
           <div className="flex items-center justify-between w-full">
             <Image src={logo} alt="logo" className="" height={30} />
-            <div className="w-[2px] h-12 bg-[#74747480]"></div>
+            <div className="w-[2px] h-12 bg-[#74747480] -mr-1"></div>
           </div>
         </div>
         <div
