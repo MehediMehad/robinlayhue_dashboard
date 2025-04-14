@@ -52,7 +52,7 @@ const NavbarSlider = ({ isOpen, toggleSidebar }: SidebarProps) => {
           href={item.route}
           className={`relative flex items-center h-11 pr-6 py-[10px] pl-[24px] text-lg transition-all my-3 duration-300 ${
             isActive
-              ? "poppins-semibold text-[#F2E8D1] font-semibold bg-[#023621] rounded-[4px]"
+              ? "poppins-semibold text-[#fff] font-semibold bg-[#91D160] rounded-[4px]"
               : "text-[#747474] font-semibold hover:bg-[#02362117]"
           }`}
         >
@@ -84,9 +84,9 @@ const NavbarSlider = ({ isOpen, toggleSidebar }: SidebarProps) => {
         }`}
       >
         {/* Logo */}
-        <div className="flex pl-8 items-center md:w-[320px] border-b border-[#74747480] min-h-[90px] max-h-[90px]">
+        <div className="flex pl-8 items-center border-b border-[#74747480] min-h-[90px] max-h-[90px]">
           <div className="flex items-center justify-between w-full">
-            <Image src={logo} alt="logo" className="" width={70} />
+            <Image src={logo} alt="logo" className="" height={30} />
             <div className="w-[2px] h-12 bg-[#74747480]"></div>
           </div>
         </div>
