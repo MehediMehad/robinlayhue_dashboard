@@ -8,8 +8,9 @@ import { GrRestaurant } from "react-icons/gr";
 import logo from "@/assests/HDlogo.png";
 import { LogoutButton } from "./LogoutButton";
 import { AiOutlineLineChart } from "react-icons/ai";
-import { TbUserStar } from "react-icons/tb";
 import { TbTruckDelivery } from "react-icons/tb";
+import { MdOutlineDashboard } from "react-icons/md";
+
 
 
 interface SidebarProps {
@@ -23,7 +24,7 @@ const navigation = [
     route: "/",
     iconPath: <AiOutlineLineChart size={23} />,
   },
-  { label: "Customer", route: "/customers", iconPath: <TbUserStar size={22} /> },
+  { label: "All Service Name", route: "/service-names", iconPath: <MdOutlineDashboard size={22} /> },
   {
     label: "Restaurant",
     route: "/restaurants",
