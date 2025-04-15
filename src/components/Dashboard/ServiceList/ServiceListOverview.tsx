@@ -5,10 +5,10 @@ import Loading from "@/components/utils/Loading";
 import ReusablePagination from "@/components/utils/ReusablePagination";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { TabsTrigger } from "@/components/ui/profule-tab";
-import ProfileTable from "./ProfileTable";
+import ServiceListTable from "./ServiceListTable";
 
-const MemberProfileTableOverview = () => {
-  const ITEMS_PER_PAGE = 8; // Number of items per page
+const ServiceListOverview = () => {
+  const ITEMS_PER_PAGE = 11; // Number of items per page
   const MAX_VISIBLE_BTN = 5; // Maximum number of visible pagination buttons
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -26,17 +26,18 @@ const MemberProfileTableOverview = () => {
   const totalPages = getUserResponse?.meta?.totalPage ?? 0;
   const openPagination = admins.length > 0 && totalPages > 1;
   return (
-    <Tabs defaultValue="Pending" className="w-full border bg-white  border-[#D9D9D9] rounded-[4px]">
+    <Tabs defaultValue="Pending" className="w-full border border-[#D9D9D9] rounded-[4px] h-full bg-white">
       
       <div className="pt-4 pb-2">
       <TabsList className="flex items-center justify-center py-4 shadow-none border-none bg-[#fff]">
         <TabsTrigger value="Pending" className="text-[15px] max-w-[197px] font-semibold bg-[#F7F7F7]  pb-1 text-center text-[#808080] rounded-sm px-10">Pending</TabsTrigger>
+        <TabsTrigger value="Progress" className="text-[15px] max-w-[197px] font-semibold bg-[#F7F7F7]  pb-1 text-center text-[#808080] rounded-sm px-10">Progress</TabsTrigger>
         <TabsTrigger value="Complete" className="text-[15px] max-w-[197px] font-semibold bg-[#F7F7F7]  pb-1 text-center text-[#808080] rounded-sm px-10">Complete</TabsTrigger>
       </TabsList>
       </div>
 
       <TabsContent value="Pending" className="">
-        <ProfileTable
+        <ServiceListTable
           admins={admins}
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}
@@ -54,8 +55,26 @@ const MemberProfileTableOverview = () => {
         )}
       </TabsContent>
 
+      <TabsContent value="Progress" className="">
+        <ServiceListTable
+          admins={admins}
+          currentPage={currentPage}
+          itemsPerPage={ITEMS_PER_PAGE}
+          openPagination={openPagination}
+        />
+
+        {/* Pagination */}
+        {openPagination && (
+          <ReusablePagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={totalPages}
+            maxVisiblePages={MAX_VISIBLE_BTN}
+          />
+        )}
+      </TabsContent>
       <TabsContent value="Complete" className="">
-        <ProfileTable
+        <ServiceListTable
           admins={admins}
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}
@@ -82,5 +101,5 @@ const MemberProfileTableOverview = () => {
   );
 };
 
-export default MemberProfileTableOverview;
+export default ServiceListOverview;
 

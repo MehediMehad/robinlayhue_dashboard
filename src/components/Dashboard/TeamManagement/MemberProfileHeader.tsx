@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const MemberProfileHeader = () => {
   return (
-    <header className="p-4">
+    <header className="p-4 bg-white">
       <Link
         href="/team-management"
         className="flex items-center gap-2 text-sm text-muted-foreground mb-4"

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation"; // Import the hook
 import { IoClose } from "react-icons/io5"; // Close icon
 import { FiMenu } from "react-icons/fi"; // Menu icon
-import { GrRestaurant } from "react-icons/gr";
 import logo from "@/assests/HDlogo.png";
 import { LogoutButton } from "./LogoutButton";
 import { AiOutlineLineChart } from "react-icons/ai";
@@ -12,6 +11,9 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbUserStar } from "react-icons/tb";
 import { FaUsersCog } from "react-icons/fa";
+import { IoBagHandleOutline } from "react-icons/io5";
+import { LiaUsersSolid } from "react-icons/lia";
+
 
 
 
@@ -29,15 +31,11 @@ const navigation = [
     iconPath: <AiOutlineLineChart size={23} />,
   },
   { label: "All Service Name", route: "/service-names", iconPath: <MdOutlineDashboard size={22} /> },
+  { label: "Service List", route: "/services", iconPath: <IoBagHandleOutline size={22} /> },
   {
     label: "Team Management",
     route: "/team-management",
-    iconPath: <FaUsersCog size={22} />,
-  },
-  {
-    label: "Delivery Partner",
-    route: "/delivery-partner",
-    iconPath: <TbTruckDelivery size={22} />,
+    iconPath: <LiaUsersSolid size={22} />,
   },
   {
     label: "Customer",
