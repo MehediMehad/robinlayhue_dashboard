@@ -1,4 +1,4 @@
-import ServiceNameOverview from "@/components/Dashboard/ServiceName/ServiceNameOverview";
+import ServiceNameOverview from "@/components/Dashboard/AllServiceName/ServiceName/ServiceNameOverview";
 import DashboardContent from "@/components/shared/DashboardContent";
 
 const ServiceNamePage = () => {

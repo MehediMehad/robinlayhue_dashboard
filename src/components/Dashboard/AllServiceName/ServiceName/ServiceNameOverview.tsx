@@ -3,7 +3,7 @@ import { useGetAllAdminsQuery } from "@/Redux/Api/adminApi";
 import Loading from "@/components/utils/Loading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AllServiceName from "./AllServiceName";
-import CreateService from "./CreateService";
+import { CreateService } from "../CreateService/CreateService";
 
 const RestaurantOverview = () => {
   const ITEMS_PER_PAGE = 11; // Number of items per page
