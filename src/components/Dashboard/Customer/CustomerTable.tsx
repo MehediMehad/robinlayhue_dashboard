@@ -40,7 +40,7 @@ export default function CustomerTable({
       }`}
     >
       <div className="flex px-10 pb-4">
-        <h1 className="text-[15px] max-w-[197px] font-semibold border-b-2 border-[#023621] pb-1 text-center text-[#023621] p-5">All Customer List</h1>
+        <h1 className="text-[15px] max-w-[197px] font-semibold border-b-2 border-[#91D160] pb-1 text-center text-[#91D160] p-5">All Customer List</h1>
       </div>
 
       <div className="">
