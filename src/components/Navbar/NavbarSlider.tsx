@@ -26,8 +26,8 @@ const navigation = [
   },
   { label: "All Service Name", route: "/service-names", iconPath: <MdOutlineDashboard size={22} /> },
   {
-    label: "Restaurant",
-    route: "/restaurants",
+    label: "Team Management",
+    route: "/team-management",
     iconPath: <GrRestaurant size={20} />,
   },
   {
@@ -59,7 +59,7 @@ const NavbarSlider = ({ isOpen, toggleSidebar }: SidebarProps) => {
         >
           {item.iconPath}
           {isOpen && (
-            <span className="ml-3 text-[18px] tracking-wide truncate">
+            <span className="ml-3 text-[16px] tracking-wide truncate">
               {item.label}
             </span>
           )}

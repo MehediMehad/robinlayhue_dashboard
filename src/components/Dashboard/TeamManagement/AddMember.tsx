@@ -7,12 +7,12 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ImageIcon } from "lucide-react"
 
-export function CreateService() {
+export function AddMember() {
   const [formData, setFormData] = useState({
     name: "",
-    price: "",
-    duration: "",
-    description: "",
+    email: "",
+    password: "",
+    location: "",
   })
 
   const [image, setImage] = useState<File | null>(null)
@@ -36,29 +36,29 @@ export function CreateService() {
     // Here you would typically send the data to your backend
     console.log({ ...formData, image })
     // Reset form after submission
-    setFormData({ name: "", price: "", duration: "", description: "" })
+    setFormData({ name: "", email: "", password: "", location: "" })
     setImage(null)
     setImagePreview(null)
   }
 
   return (
     <div className="p-5 md:w-[90%] lg:w-[80%]">
-      <h1 className="text-xl font-semibold mb-6">Create New Service</h1>
+      <h1 className="text-xl font-semibold mb-6">Add New Member</h1>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-4">
-            <Input placeholder="Type Service name" name="name" value={formData.name} onChange={handleInputChange} />
-            <Input placeholder="Type Service price" name="price" value={formData.price} onChange={handleInputChange} />
+            <Input placeholder="Type Member name" name="name" value={formData.name} onChange={handleInputChange} />
+            <Input placeholder="Type Member email" name="email" value={formData.email} onChange={handleInputChange} />
             <Input
-              placeholder="Type Service duration"
-              name="duration"
-              value={formData.duration}
+              placeholder="Type password"
+              name="password" 
+              value={formData.password}
               onChange={handleInputChange}
             />
             <Input
-              placeholder="Type Service description"
-              name="description"
-              value={formData.description}
+              placeholder="Type location"
+              name="location"
+              value={formData.location}
               onChange={handleInputChange}
             />
           </div>
@@ -100,7 +100,7 @@ export function CreateService() {
         </div>
 
         <Button type="submit" className="w-full mt-4 bg-[#91D160] hover:bg-[#7db850] text-white">
-          Create
+          Add
         </Button>
       </form>
     </div>
