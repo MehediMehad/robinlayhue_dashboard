@@ -1,7 +1,5 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import logo from "@/assests/logo.png"
 import ReduxProvider from "@/Redux/ReduxProvider";
 import { ToastContainer } from "react-toastify";
 // import ReduxProvider from "@/components/Redux/ReduxProvider";

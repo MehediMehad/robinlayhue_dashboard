@@ -7,10 +7,8 @@ import { FiMenu } from "react-icons/fi"; // Menu icon
 import logo from "@/assests/HDlogo.png";
 import { LogoutButton } from "./LogoutButton";
 import { AiOutlineLineChart } from "react-icons/ai";
-import { TbTruckDelivery } from "react-icons/tb";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbUserStar } from "react-icons/tb";
-import { FaUsersCog } from "react-icons/fa";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { LiaUsersSolid } from "react-icons/lia";
 
@@ -27,7 +25,7 @@ interface SidebarProps {
 const navigation = [
   {
     label: "Dashboard",
-    route: "/",
+    route: "/dashboard",
     iconPath: <AiOutlineLineChart size={23} />,
   },
   { label: "All Service Name", route: "/service-names", iconPath: <MdOutlineDashboard size={22} /> },

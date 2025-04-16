@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
   // const loginRoute = `${request.nextUrl.origin}/login`;
   const homeRoute = `${request.nextUrl.origin}/login`;
   // const dashboardRoute = `${request.nextUrl.origin}/dashboard`;
-  const adminRoutes = ["/", "/event-creator", "/running-event", "/subscription", "/transaction", "/users"]
+  const adminRoutes = ["/", "/dashboard", "/customers", "/services", "/team-management", "/customers"]
 
 
   const token = request.cookies.get('accessToken')?.value;
@@ -17,7 +17,7 @@ export function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
 
   // Redirect based on role and route
-  if ('role' in userInfo && userInfo?.role !== 'SUPERADMIN' && adminRoutes.some((e) => currentPath.startsWith(e))) {
+  if ('role' in userInfo && userInfo?.role !== 'ADMIN' && adminRoutes.some((e) => currentPath.startsWith(e))) {
     // Prevent ADMIN from accessing /services
     return NextResponse.redirect(new URL(homeRoute, request.url));
   }
@@ -27,5 +27,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/event-creator", "/running-event", "/subscription", "/transaction", "/users"], // Apply middleware to the /services route
+  matcher: ["/", "/dashboard", "/customers", "/services", "/team-management", "/customers"], // Apply middleware to the /services route
 };

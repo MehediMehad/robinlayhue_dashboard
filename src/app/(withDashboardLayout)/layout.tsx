@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar/Navbar";
+import ReduxProvider from "@/Redux/ReduxProvider";
 import { ToastContainer } from "react-toastify";
 export default function RootLayout({
   children,
@@ -7,6 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <main className="mx-auto">
+<ReduxProvider>
       <div className="flex max-w-[1440px] mx-auto">
         <Navbar />
         <div
@@ -17,6 +19,9 @@ export default function RootLayout({
           <ToastContainer />
         </div>
       </div>
+      </ReduxProvider>
     </main>
   );
 }
+
+

@@ -33,6 +33,7 @@ const LogIn = () => {
     const loginData = { email, password };
 
     const { data, error } = await loginFun(loginData);
+    
 
     if (error) {
       ShowToastify({ error: "Check your password or email address" });
@@ -41,7 +42,7 @@ const LogIn = () => {
     if (data) {
       console.log(data?.data?.role);
 
-      if (data?.data?.role != "SUPERADMIN") {
+      if (data?.data?.role != "ADMIN") {
         ShowToastify({ error: "You are not authorize" });
         setLogIn("Log In to Dashboard");
         dispatch(logout());
@@ -58,7 +59,7 @@ const LogIn = () => {
 
       dispatch(setUser({ user: modifyUser, token: data.data.accessToken }));
       Cookies.set("accessToken", data?.data?.accessToken);
-      route.push("/");
+      route.push("/dashboard");
       ShowToastify({ success: "Login Successfully" });
     }
   };
@@ -99,7 +100,7 @@ const LogIn = () => {
             <input
               type="email"
               name="email"
-              defaultValue={"admin@gmail.com"}
+              defaultValue={"admin123@gmail.com"}
               required
               className="mt-1 block w-full px-11 py-3 border border-[#E0E0E0] rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-[#E0E0E0] focus:border-[#E0E0E0] transition duration-200 placeholder-gray-400"
               placeholder="Enter your email"
