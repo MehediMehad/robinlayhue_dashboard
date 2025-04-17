@@ -29,7 +29,7 @@ const navigation = [
     iconPath: <AiOutlineLineChart size={23} />,
   },
   { label: "All Service Name", route: "/service-names", iconPath: <MdOutlineDashboard size={22} /> },
-  { label: "Service List", route: "/services", iconPath: <IoBagHandleOutline size={22} /> },
+  { label: "Booking List", route: "/bookings", iconPath: <IoBagHandleOutline size={22} /> },
   {
     label: "Team Management",
     route: "/team-management",

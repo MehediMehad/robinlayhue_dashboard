@@ -16,27 +16,33 @@ import {
   };
   
   type TRestaurantTableProps = {
-    admins: {
-      id: string;
-      email: string;
-      role: string;
-      createdAt: string;
-      status: keyof typeof statusStyles;
+    bookings: {
+      id: string
+      status: string // status: keyof typeof statusStyles;
+      location: string
+      details: string
+      paid: boolean
+      date: string
+      name: string
+      email: string
+      serviceName: string
+      serviceImage: string
+      serviceTime: string
     }[];
     currentPage: number;
     itemsPerPage: number;
     openPagination: boolean;
   };
   export default function ServiceListTable({
-    admins,
+    bookings,
     openPagination,
   }: TRestaurantTableProps) {
-    console.log(10, admins);
+    console.log(10, bookings);
   
     return (
       <div
         className={`border-[#D9D9D9] bg-white ${
-          openPagination ? "" : "min-h-[calc(100vh-105px)]"
+          openPagination ? "" : "min-h-[calc(100vh-220px)]"
         }`}
       >
         <div className="">
@@ -61,13 +67,13 @@ import {
               </TableRow>
             </TableHeader>
             <TableBody className="">
-              {[1,,1,1,1,1,1,1,1,11,1,1,1,1,1,].map((admin, index) => (
+              {[1,1,1,1,1,,1,1,1,1,1,1,,1,1,1,1,1,1,1,].map((booking, index) => (
                 <TableRow
                   key={index}
                   className="border-b h-12 hover:bg-[#414141]/5 duration-300"
                 >
                   <TableCell className="text-[#414141] text-[16px]  px-0">
-                  KHANAS45
+                  'jj'
                   </TableCell>
                   <TableCell className="text-[#414141] text-[16px] px-0">
                   16 July 2023, 12:35 AM

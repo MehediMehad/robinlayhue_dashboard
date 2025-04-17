@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
-import { useGetAllAdminsQuery } from "@/Redux/Api/adminApi";
 import Loading from "@/components/utils/Loading";
 import ReusablePagination from "@/components/utils/ReusablePagination";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { TabsTrigger } from "@/components/ui/profule-tab";
 import ServiceListTable from "./ServiceListTable";
+import { useGetAllBookingQuery } from "@/Redux/Api/bookingApi";
 
 const ServiceListOverview = () => {
-  const ITEMS_PER_PAGE = 11; // Number of items per page
+  const ITEMS_PER_PAGE = 15; // Number of items per page
   const MAX_VISIBLE_BTN = 5; // Maximum number of visible pagination buttons
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -18,13 +18,15 @@ const ServiceListOverview = () => {
   ];
 
   const { data: getUserResponse, isLoading } =
-    useGetAllAdminsQuery(queryParams);
+    useGetAllBookingQuery(queryParams); // 
 
+    console.log(getUserResponse);
   if (isLoading) return <Loading />;
 
-  const admins = getUserResponse?.data ?? [];
+  const bookings = getUserResponse?.data ?? [];
+  
   const totalPages = getUserResponse?.meta?.totalPage ?? 0;
-  const openPagination = admins.length > 0 && totalPages > 1;
+  const openPagination = bookings.length > 1 && totalPages > 1
   return (
     <Tabs defaultValue="Pending" className="w-full border border-[#D9D9D9] rounded-[4px] h-full bg-white">
       
@@ -38,7 +40,7 @@ const ServiceListOverview = () => {
 
       <TabsContent value="Pending" className="">
         <ServiceListTable
-          admins={admins}
+          bookings={bookings}
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}
           openPagination={openPagination}
@@ -57,7 +59,7 @@ const ServiceListOverview = () => {
 
       <TabsContent value="Progress" className="">
         <ServiceListTable
-          admins={admins}
+          bookings={bookings}
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}
           openPagination={openPagination}
@@ -75,7 +77,7 @@ const ServiceListOverview = () => {
       </TabsContent>
       <TabsContent value="Complete" className="">
         <ServiceListTable
-          admins={admins}
+          bookings={bookings}
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}
           openPagination={openPagination}
@@ -92,11 +94,11 @@ const ServiceListOverview = () => {
         )}
       </TabsContent>
 
-      {admins.length === 0 && (
+      {/* {bookings.length === 0 && (
         <div className="text-center text-[#929292] text-[28px] py-12">
           Data Not Found
         </div>
-      )}
+      )} */}
     </Tabs>
   );
 };
