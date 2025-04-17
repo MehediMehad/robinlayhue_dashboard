@@ -8,7 +8,7 @@ import ServiceListTable from "./ServiceListTable";
 import { useGetAllBookingQuery } from "@/Redux/Api/bookingApi";
 
 const ServiceListOverview = () => {
-  const ITEMS_PER_PAGE = 15; // Number of items per page
+  const ITEMS_PER_PAGE = 11; // Number of items per page
   const MAX_VISIBLE_BTN = 5; // Maximum number of visible pagination buttons
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -16,19 +16,28 @@ const ServiceListOverview = () => {
     { name: "page", value: currentPage },
     { name: "limit", value: ITEMS_PER_PAGE },
   ];
+  // const { data: getServiceResponse, isLoading: servicesLoading } =
+  // useGetAllServiceQuery(undefined);
+  // console.log(getServiceResponse, servicesLoading);
+  
 
-  const { data: getUserResponse, isLoading } =
+
+  const { data: getResponse, isLoading } =
     useGetAllBookingQuery(queryParams); // 
 
-    console.log(getUserResponse);
+    
+
+    
   if (isLoading) return <Loading />;
 
-  const bookings = getUserResponse?.data ?? [];
+  const bookings = getResponse?.data
   
-  const totalPages = getUserResponse?.meta?.totalPage ?? 0;
-  const openPagination = bookings.length > 1 && totalPages > 1
+  
+  const totalPages = getResponse?.meta?.totalPage ?? 0;
+
+  const openPagination = Array.isArray(bookings) && bookings.length > 1 && totalPages > 1;
   return (
-    <Tabs defaultValue="Pending" className="w-full border border-[#D9D9D9] rounded-[4px] h-full bg-white">
+    <Tabs defaultValue="Pending" className="w-full border border-[#D9D9D9] rounded-[4px] min-h-[calc(100vh-160px)] bg-white">
       
       <div className="pt-4 pb-2">
       <TabsList className="flex items-center justify-center py-4 shadow-none border-none bg-[#fff]">
@@ -38,6 +47,7 @@ const ServiceListOverview = () => {
       </TabsList>
       </div>
 
+      <div className="flex w-full flex-col justify-between">
       <TabsContent value="Pending" className="">
         <ServiceListTable
           bookings={bookings}
@@ -84,6 +94,7 @@ const ServiceListOverview = () => {
         />
 
         {/* Pagination */}
+        <div className="">
         {openPagination && (
           <ReusablePagination
             currentPage={currentPage}
@@ -92,7 +103,9 @@ const ServiceListOverview = () => {
             maxVisiblePages={MAX_VISIBLE_BTN}
           />
         )}
+        </div>
       </TabsContent>
+      </div>
 
       {/* {bookings.length === 0 && (
         <div className="text-center text-[#929292] text-[28px] py-12">

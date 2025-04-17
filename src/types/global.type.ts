@@ -28,6 +28,7 @@ export type TResponse<T> = {
     statusCode: number;
     success: boolean;
     message: string;
+    meta?: TMeta
     data: TData<T>
   };
   

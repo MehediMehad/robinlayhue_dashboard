@@ -20,16 +20,25 @@ const bookingApi = baseApi.injectEndpoints({
       },
       providesTags: ["BOOKING"],
       transformResponse: (response: TResponseRedux<any[]>) => {
+        console.log("API Response:", response);
         return {
-          data: response.data.data,
-          meta: response.data.meta,
+          data: response.data,
+          meta: response.meta,
         };
       },
+    }),
+    addAssign: builder.mutation({
+      query: (data) => ({
+        url: "/booking/assign",
+        method: "PUT",
+        body: data,
+      }),
     }),
 
   }),
 });
 
 export const {
-  useGetAllBookingQuery
+  useGetAllBookingQuery,
+  useAddAssignMutation
 } = bookingApi;
