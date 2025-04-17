@@ -4,7 +4,7 @@ import Loading from "@/components/utils/Loading";
 import ReusablePagination from "@/components/utils/ReusablePagination";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { TabsTrigger } from "@/components/ui/profule-tab";
-import ServiceListTable from "./ServiceListTable";
+import ServiceListTable, { TBooking } from "./ServiceListTable";
 import { useGetAllBookingQuery } from "@/Redux/Api/bookingApi";
 
 const ServiceListOverview = () => {
@@ -30,7 +30,7 @@ const ServiceListOverview = () => {
     
   if (isLoading) return <Loading />;
 
-  const bookings = getResponse?.data
+  const bookings: TBooking[] = Array.isArray(getResponse?.data) ? getResponse.data : [];
   
   
   const totalPages = getResponse?.meta?.totalPage ?? 0;
@@ -50,7 +50,7 @@ const ServiceListOverview = () => {
       <div className="flex w-full flex-col justify-between">
       <TabsContent value="Pending" className="">
         <ServiceListTable
-          bookings={bookings}
+          bookings={bookings ?? []}
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}
           openPagination={openPagination}
