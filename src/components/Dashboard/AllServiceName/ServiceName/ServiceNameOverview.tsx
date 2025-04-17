@@ -1,24 +1,9 @@
 "use client";
-import { useGetAllAdminsQuery } from "@/Redux/Api/adminApi";
-import Loading from "@/components/utils/Loading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AllServiceName from "./AllServiceName";
 import CreateService from "../CreateService/CreateService";
-// import { CreateService } from "../CreateService/CreateService";
 
 const RestaurantOverview = () => {
-  const ITEMS_PER_PAGE = 11; // Number of items per page
-
-  const queryParams = [
-    { name: "limit", value: ITEMS_PER_PAGE },
-  ];
-
-  const { data: getUserResponse, isLoading } =
-    useGetAllAdminsQuery(queryParams);
-
-  if (isLoading) return <Loading />;
-
-  const admins = getUserResponse?.data ?? [];
   return (
     <Tabs
       defaultValue="All Service Name"
@@ -48,12 +33,6 @@ const RestaurantOverview = () => {
       <TabsContent value="Create Service">
         <CreateService />
       </TabsContent>
-
-      {admins.length === 0 && (
-        <div className="text-center text-[#929292] text-[28px] py-12">
-          Data Not Found
-        </div>
-      )}
     </Tabs>
   );
 };

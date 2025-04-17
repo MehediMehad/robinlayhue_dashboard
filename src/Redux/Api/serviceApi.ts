@@ -1,18 +1,9 @@
-import { TQueryParam, TResponseRedux } from "@/types/global.type";
+import { TResponseRedux } from "@/types/global.type";
 import baseApi from "./baseApi";
+import { TService } from "@/components/Dashboard/AllServiceName/ServiceName/ServiceNameCard";
 
 const serviceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    createService2: builder.mutation({
-      query: (data: any) => {
-        return {
-          url: "/auth/register-admin",
-          method: "POST",
-          body: data,
-        };
-      },
-      invalidatesTags: ["ADMIN"],
-    }),
     createService: builder.mutation({
         query: (data) => ({
           url: "/service/create",
@@ -21,36 +12,15 @@ const serviceApi = baseApi.injectEndpoints({
         }),
         invalidatesTags: ["SERVICE"],
       }),
-    getUniqueUsername: builder.mutation({
-      query: (data: any) => {
+    getAllService: builder.query({
+      query: () => ({
+        url: `/service`,
+        method: "GET",
+      }),
+      providesTags: ["SERVICE"],
+      transformResponse: (response: TResponseRedux<TService[]>) => {
         return {
-          url: "/auth/unique-username",
-          method: "POST",
-          body: data,
-        };
-      },
-      invalidatesTags: ["ADMIN"],
-    }),
-    getAllAdmins: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-
-        if (args) {
-          args.forEach((item: TQueryParam) => {
-            params.append(item.name, item.value as string);
-          });
-        }
-        return {
-          url: "/users/all-admin",
-          method: "GET",
-          params: params,
-        };
-      },
-      providesTags: ["ADMIN"],
-      transformResponse: (response: TResponseRedux<any[]>) => {
-        return {
-          data: response.data.data,
-          meta: response.data.meta,
+          data: response.data,
         };
       },
     }),
@@ -60,6 +30,5 @@ const serviceApi = baseApi.injectEndpoints({
 
 export const {
   useCreateServiceMutation,
-  useGetAllAdminsQuery,
-  useGetUniqueUsernameMutation,
+  useGetAllServiceQuery,
 } = serviceApi;
