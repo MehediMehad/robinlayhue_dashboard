@@ -19,6 +19,7 @@ const serviceApi = baseApi.injectEndpoints({
           method: "POST",
           body: data,
         }),
+        invalidatesTags: ["SERVICE"],
       }),
     getUniqueUsername: builder.mutation({
       query: (data: any) => {

@@ -14,7 +14,7 @@ export const createService = async (data: FormData) => {
     });
     revalidateTag("SERVICE");
     return res.json();
-  } catch (error: any) {
+  } catch (error: any) {    
     return Error(error);
   }
 };

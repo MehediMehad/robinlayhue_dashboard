@@ -7,7 +7,6 @@ export const baseApi = createApi({
         baseUrl: 'http://10.0.20.64:6001/api/v1', // Replace with your API's base URL
         prepareHeaders: (headers) => {
             const token = Cookies.get("accessToken") // Assuming token is stored in the auth slice
-            console.log(52,token);
             
             if (token) {
                 headers.set('Authorization', `${token}`);
@@ -16,7 +15,7 @@ export const baseApi = createApi({
         },
     }),
     endpoints: () => ({}),
-    tagTypes: ["USERS", "SELLERS", "ADMIN"]
+    tagTypes: ["USERS", "SELLERS", "ADMIN", "SERVICE"]
 });
 
 // Export hooks for usage in functional components

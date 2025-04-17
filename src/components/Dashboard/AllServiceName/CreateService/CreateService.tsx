@@ -2,58 +2,60 @@
 import { Button } from "@/components/ui/button";
 import ServiceImagePreviewer from "@/components/ui/core/NMImageUploader/ServiceImagePreviewer";
 import ServiceImageUploader from "@/components/ui/core/NMImageUploader/ServiceImageUploader";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useCreateServiceMutation } from "@/Redux/Api/serviceApi";
 import ShowToastify from "@/utils/ShowToastify";
 import { useState } from "react";
-import { FieldValues, SubmitErrorHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { serviceSchema } from "@/validationSchema/serviceSchema";
 
 const CreateService = () => {
-  const [addService, { data, error }] = useCreateServiceMutation();
-  console.log(data, error);
-
+  const [addService] = useCreateServiceMutation();
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
-
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
 
-  const form = useForm();
+  // Use Zod schema for form validation
+  const form = useForm({
+    resolver: zodResolver(serviceSchema), 
+  });
+
   const {
     formState: { isSubmitting },
   } = form;
 
-  const onSubmit: SubmitErrorHandler<FieldValues> = async (formData) => {
-    const bodyData ={
+  const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
+    const bodyData = {
       ...formData,
-      price: "jj" //parseFloat(formData.price)
-    }
+      price: parseFloat(String(formData.price || "0")),
+    };
+
     try {
       // Check if imageFiles is not empty
       if (imageFiles.length > 0) {
         const formDataWithImage = new FormData();
         formDataWithImage.append("bodyData", JSON.stringify(bodyData)); // Add all form data
         formDataWithImage.append("serviceImage", imageFiles[0] as File); // Add image file
-        console.log(Object.fromEntries(formDataWithImage));
 
         // Handle the API call with FormData
         const res = await addService(formDataWithImage);
-        console.log(29, res);
-        console.log("An error occurred", res?.data?.message );
-        
-        if (res?.data?.success) {
-          ShowToastify({ success: res.data.message || 'Service created successfully!'});
-        }else{
-          ShowToastify({ error:  "An error occurred"});
-        }
-        
-       
 
+        if (res?.data?.success) {
+          ShowToastify({
+            success: res.data.message || "Service created successfully!",
+          });
+        } else {
+          ShowToastify({
+            error:
+              res.error &&
+              // Check if the error is a FetchBaseQueryError, and then access the data property
+              "data" in res.error
+                ? (res.error.data as { message?: string })?.message ||
+                  "An error occurred"
+                : "An error occurred",
+          });
+        }
       } else {
         // Handle case where no image is uploaded
         console.log("No image uploaded");
@@ -74,7 +76,6 @@ const CreateService = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    {/* <FormLabel>Name</FormLabel> */}
                     <FormControl>
                       <Input
                         type="text"
@@ -93,7 +94,6 @@ const CreateService = () => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    {/* <FormLabel>Description</FormLabel> */}
                     <FormControl>
                       <Input
                         type="text"
@@ -112,7 +112,6 @@ const CreateService = () => {
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    {/* <FormLabel>Name</FormLabel> */}
                     <FormControl>
                       <Input
                         type="text"
@@ -131,7 +130,6 @@ const CreateService = () => {
                 name="duration"
                 render={({ field }) => (
                   <FormItem>
-                    {/* <FormLabel>Duration</FormLabel> */}
                     <FormControl>
                       <Input
                         type="text"
@@ -164,7 +162,11 @@ const CreateService = () => {
               </div>
             )}
           </div>
-          <Button disabled={isSubmitting} type="submit" className="mt-5 py-5 w-full bg-[#91D160] hover:bg-[#85c753]">
+          <Button
+            disabled={isSubmitting}
+            type="submit"
+            className="mt-5 py-5 w-full bg-[#91D160] hover:bg-[#85c753]"
+          >
             {isSubmitting ? "Creating..." : "Create"}
           </Button>
         </form>
