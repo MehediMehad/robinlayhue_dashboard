@@ -4,8 +4,8 @@ import Loading from "@/components/utils/Loading";
 import ReusablePagination from "@/components/utils/ReusablePagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TeamManagementTable from "./TeamManagementTable";
-import { AddMember } from "./AddMember";
 import { useGetAllWorkerMetaQuery } from "@/Redux/Api/workerApi";
+import AddMember from "./AddMember";
 
 const TeamManagementOverview = () => {
   const ITEMS_PER_PAGE = 11; // Number of items per page
@@ -20,6 +20,8 @@ const TeamManagementOverview = () => {
   
   const { data: getResponse, isLoading } =
     useGetAllWorkerMetaQuery(queryParams); // 
+    console.log(100, getResponse);
+    
 
     
     if (isLoading) return <Loading />;
@@ -35,6 +37,8 @@ const TeamManagementOverview = () => {
     
     
     const totalPages = getResponse?.meta?.totalPage ?? 0;
+    console.log({totalPages});
+    
   
     const openPagination = Array.isArray(bookings) && bookings.length > 1 && totalPages > 1;
   

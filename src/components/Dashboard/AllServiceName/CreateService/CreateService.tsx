@@ -58,7 +58,7 @@ const CreateService = () => {
         }
       } else {
         // Handle case where no image is uploaded
-        console.log("No image uploaded");
+        ShowToastify({error: "No image upload"})
       }
     } catch (err) {
       console.error("Error submitting form: ", err);

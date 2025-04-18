@@ -3,11 +3,20 @@ import baseApi from "./baseApi";
 
 const workerApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    createMember: builder.mutation({
+      query: (data) => ({
+        url: "/worker/create",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["WORKER"],
+    }),
     getAllWorker: builder.query({
       query: () => ({
         url: `/worker`,
         method: "GET",
       }),
+      providesTags: ["WORKER"],
       transformResponse: (response: any) => {
         return {
           data: response.data,
@@ -29,6 +38,7 @@ const workerApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["WORKER"],
       transformResponse: (response: TResponseRedux<any[]>) => {
         return {
           data: response.data,
@@ -39,4 +49,4 @@ const workerApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllWorkerQuery, useGetAllWorkerMetaQuery } = workerApi;
+export const { useCreateMemberMutation ,useGetAllWorkerQuery, useGetAllWorkerMetaQuery } = workerApi;
