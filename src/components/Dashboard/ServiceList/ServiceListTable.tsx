@@ -18,11 +18,11 @@ import { useGetAllWorkerQuery } from "@/Redux/Api/workerApi";
 
 export interface TBooking {
   id: string;
-  status: "PENDING" | "PROGRESS" | "COMPLETED"; 
+  status: "PENDING" | "PROGRESSING" | "COMPLETED";
   location: string;
   details: string;
   paid: boolean;
-  date: string; 
+  date: string;
   name: string;
   email: string;
   serviceName: string;
@@ -33,7 +33,7 @@ export interface TBooking {
 // Define status styles outside the component to avoid re-renders
 const statusStyles = {
   PENDING: "bg-yellow-100 text-yellow-600 hover:bg-yellow-200",
-  PROGRESS: "bg-blue-100 text-blue-600 hover:bg-blue-200",
+  PROGRESSING: "bg-blue-100 text-blue-600 hover:bg-blue-200",
   COMPLETED: "bg-green-100 text-green-600 hover:bg-green-200",
 };
 
@@ -42,9 +42,11 @@ interface ServiceListTableProps {
   openPagination: boolean;
   currentPage: number;
   itemsPerPage: number;
+  selectedTab: "PENDING" | "PROGRESSING" | "COMPLETED";
 }
 
 export default function ServiceListTable({
+  selectedTab,
   bookings,
   openPagination,
 }: ServiceListTableProps) {
@@ -120,18 +122,20 @@ export default function ServiceListTable({
             <TableHead className="w-[140.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
               Customer Name
             </TableHead>
-            <TableHead className="w-[200.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
+            <TableHead className="w-[250.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
               Date & Time
             </TableHead>
-            <TableHead className="w-[300.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
+            <TableHead className="w-[250.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
               Location
             </TableHead>
-            <TableHead className="w-[120px] text-[#262626] text-[16px] px-0 font-semibold">
+            <TableHead className="w-[130px] text-[#262626] text-[16px] px-0 font-semibold">
               Status
             </TableHead>
-            <TableHead className="w-[100px] text-[#262626] text-[16px] px-0 font-semibold">
-              Action
-            </TableHead>
+            {selectedTab === "PENDING" && (
+              <TableHead className="w-[100px] text-[#262626] text-[16px] px-0 font-semibold">
+                Action
+              </TableHead>
+            )}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -158,18 +162,25 @@ export default function ServiceListTable({
                   {booking.status}
                 </p>
               </TableCell>
-              <TableCell className="text-[#414141] text-[16px] px-0">
-                <Button
-                  className="bg-[#91D160] hover:bg-[#6fa149] text-white text-xs py-1 h-auto"
-                  onClick={() => openAssignmentModal(booking.id)}
-                >
-                  Assign Job
-                </Button>
-              </TableCell>
+              {selectedTab === "PENDING" && (
+                <TableCell className="text-[#414141] text-[16px] px-0">
+                  <Button
+                    className="bg-[#91D160] hover:bg-[#6fa149] text-white text-xs py-1 h-auto"
+                    onClick={() => openAssignmentModal(booking.id)}
+                  >
+                    Assign Job
+                  </Button>
+                </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>
       </Table>
+      {bookings.length === 0 && (
+        <div className="text-center text-[#929292] text-[28px] py-12">
+          {selectedTab} Data Not Found
+        </div>
+      )}
 
       {/* Assignment Modal */}
       <Dialog open={assignmentModalOpen} onOpenChange={setAssignmentModalOpen}>
