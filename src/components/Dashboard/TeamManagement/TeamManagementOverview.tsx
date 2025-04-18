@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import { useGetAllAdminsQuery } from "@/Redux/Api/adminApi";
 import Loading from "@/components/utils/Loading";
 import ReusablePagination from "@/components/utils/ReusablePagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TeamManagementTable from "./TeamManagementTable";
 import { AddMember } from "./AddMember";
+import { useGetAllWorkerMetaQuery } from "@/Redux/Api/workerApi";
 
 const TeamManagementOverview = () => {
   const ITEMS_PER_PAGE = 11; // Number of items per page
@@ -15,16 +15,30 @@ const TeamManagementOverview = () => {
   const queryParams = [
     { name: "page", value: currentPage },
     { name: "limit", value: ITEMS_PER_PAGE },
+    { name: "meta", value: true },
   ];
+  
+  const { data: getResponse, isLoading } =
+    useGetAllWorkerMetaQuery(queryParams); // 
 
-  const { data: getUserResponse, isLoading } =
-    useGetAllAdminsQuery(queryParams);
+    
+    if (isLoading) return <Loading />;
 
-  if (isLoading) return <Loading />;
+    const bookings = Array.isArray(getResponse?.data)
+      ? getResponse.data.map((booking) => ({
+          ...booking,
+          image: booking.image || "", // Provide a default or derived value
+          createdAt: booking.createdAt || new Date().toISOString(), // Default to current date
+          updatedAt: booking.updatedAt || new Date().toISOString(), // Default to current date
+        }))
+      : [];
+    
+    
+    const totalPages = getResponse?.meta?.totalPage ?? 0;
+  
+    const openPagination = Array.isArray(bookings) && bookings.length > 1 && totalPages > 1;
+  
 
-  const admins = getUserResponse?.data ?? [];
-  const totalPages = getUserResponse?.meta?.totalPage ?? 0;
-  const openPagination = admins.length > 0 && totalPages > 1;
   return (
     <Tabs defaultValue="Member List" className="w-full h-[82vh] bg-white border border-[#D9D9D9] rounded-[4px]">
       
@@ -37,7 +51,7 @@ const TeamManagementOverview = () => {
 
       <TabsContent value="Member List" className="">
         <TeamManagementTable
-          admins={admins}
+          bookings={bookings}
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}
           openPagination={openPagination}
@@ -58,11 +72,11 @@ const TeamManagementOverview = () => {
         <AddMember/>
       </TabsContent>
 
-      {admins.length === 0 && (
+      {/* {admins.length === 0 && (
         <div className="text-center text-[#929292] text-[28px] py-12">
           Data Not Found
         </div>
-      )}
+      )} */}
     </Tabs>
   );
 };

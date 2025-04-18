@@ -11,37 +11,32 @@ import Link from "next/link";
 import { MdDelete } from "react-icons/md";
 
 
-// Define the status types and their corresponding styles
-const statusStyles = {
-  ACTIVE: "bg-green-100 text-green-600 hover:bg-green-100",
-  BLOCKED: "bg-red-100 text-red-600 hover:bg-red-100",
-};
-
 type TRestaurantTableProps = {
-  admins: {
-    id: string;
-    email: string;
-    role: string;
-    createdAt: string;
-    status: keyof typeof statusStyles;
+  bookings: {
+    id: string
+    name: string
+    image: string
+    location: string
+    email: string
+    createdAt: string
+    updatedAt: string
   }[];
   currentPage: number;
   itemsPerPage: number;
   openPagination: boolean;
 };
 export default function TeamManagementTable({
-  admins,
+  bookings,
   openPagination,
 }: TRestaurantTableProps) {
-  console.log(10, admins);
 
   return (
     <div
       className={`border-[#D9D9D9] bg-white ${
-        openPagination ? "" : "min-h-[calc(100vh-105px)]"
+        openPagination ? "" : "min-h-[calc(100vh-240px)]"
       }`}
     >
-      <div className="">
+      <div className="relative">
         <Table className="w-full">
           <TableHeader className="border-none" style={{ height: "60px" }}>
             <TableRow className="">
@@ -60,22 +55,22 @@ export default function TeamManagementTable({
             </TableRow>
           </TableHeader>
           <TableBody className="">
-            {admins.map((admin, index) => (
+            {bookings.map((booking, index) => (
               <TableRow
-                key={admin.id}
+                key={index}
                 className="border-b h-12 hover:bg-[#414141]/5 duration-300"
               >
                 <TableCell className="text-[#414141] text-[16px]  px-0">
-                KHANAS
+                {booking.name}
                 </TableCell>
                 <TableCell className="text-[#414141] text-[16px] px-0">
-                  jessica.hanson@example.com{" "}
+                  {booking.email}{" "}
                 </TableCell>
                 <TableCell className="text-[#414141] text-[16px] px-0">
-                  Aspen Ridge, Colorado, USA Aspen Ridge, Color...
+                  {booking.location || "Not Provide"}
                 </TableCell>
                 <TableCell className="text-[#414141] text-[16px] flex items-center px-0">
-                  <Link href={"/team-management/member-profile"}>
+                  <Link href={`/team-management/technician/${booking.id}`}>
                     <Button
                       className="text-[#2972FF] py-0 h-1"
                       variant={"link"}
@@ -92,6 +87,11 @@ export default function TeamManagementTable({
             ))}
           </TableBody>
         </Table>
+        {bookings.length === 0 && (
+        <div className="text-center text-[#929292] text-[28px] py-12 absolute top-20 left-[40%]">
+          Data Not Found
+        </div>
+      )}
       </div>
     </div>
   );
