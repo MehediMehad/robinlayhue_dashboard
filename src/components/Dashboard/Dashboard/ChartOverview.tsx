@@ -23,7 +23,8 @@ const ChartOverview = () => {
               <h3 className="text-4xl font-bold leading-[100%] tracking-[-3%]">
                 $1,245
               </h3>
-              <Badge className="bg-[#E9FFEC] text-[#023621] shadow-none border-[1px] border-[#023621] hover:bg-[#E9FFEC] px-1">
+              {/*TODO: hidden */}
+              <Badge className="bg-[#E9FFEC] text-[#023621] shadow-none border-[1px] border-[#023621] hover:bg-[#E9FFEC] px-1 hidden">
                 <span className="pr-[2px]">
                   <BsArrowUp />
                 </span>
@@ -31,7 +32,8 @@ const ChartOverview = () => {
               </Badge>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          {/*TODO: Button hidden */}
+          <div className="items-center gap-2 hidden"> 
             <Select defaultValue="month">
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Month" />

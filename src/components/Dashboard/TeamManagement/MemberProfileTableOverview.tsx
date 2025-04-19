@@ -40,7 +40,7 @@ const MemberProfileTableOverview = ({ profileId }: { profileId: string }) => {
 
   const bookings: any[] = Array.isArray(getResponse?.data) ? getResponse.data : [];
   const totalPages = getResponse?.meta?.totalPage ?? 0;
-  const openPagination = Array.isArray(bookings) && bookings.length > 1 && totalPages > 1;
+  const openPagination = Array.isArray(bookings) && bookings.length > 0 && totalPages > 1;
 
   return (
     <Tabs

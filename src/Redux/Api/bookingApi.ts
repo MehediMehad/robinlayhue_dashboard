@@ -33,8 +33,9 @@ const bookingApi = baseApi.injectEndpoints({
         method: "PUT",
         body: data,
       }),
+      invalidatesTags: ["BOOKING"]
     }),
-
+  
   }),
 });
 

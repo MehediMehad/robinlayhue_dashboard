@@ -28,7 +28,8 @@ export default function DashboardPage() {
                         <h3 className="text-4xl font-bold leading-[100%] tracking-[-3%]">
                           11,245
                         </h3>
-                        <Badge className="bg-[#E9FFEC] text-[#023621] shadow-none border-[1px] border-[#023621] hover:bg-[#E9FFEC] px-1">
+                        {/*TODO: hidden */}
+                        <Badge className="bg-[#E9FFEC] text-[#023621] shadow-none border-[1px] border-[#023621] hover:bg-[#E9FFEC] px-1 hidden">
                           <span className="pr-[2px]">
                             <BsArrowUp />
                           </span>
@@ -53,11 +54,8 @@ export default function DashboardPage() {
                         <h3 className="text-4xl font-bold leading-[100%] tracking-[-3%]">
                           5,245
                         </h3>
-                        {/* <p className="rounded-md flex gap-1 items-center justify-center text-[14px] border border-[#023621] bg-[#E9FFEC] p-[1px] font-semibold text-green-800">
-                          <span><BsArrowUp/></span>
-                          2.63%
-                        </p> */}
-                        <Badge className="bg-[#E9FFEC] text-[#023621] shadow-none border-[1px] border-[#023621] hover:bg-[#E9FFEC] px-1">
+                        {/*TODO: hidden */}
+                        <Badge className="bg-[#E9FFEC] text-[#023621] shadow-none border-[1px] border-[#023621] hover:bg-[#E9FFEC] px-1 hidden">
                           <span className="pr-[2px]">
                             <BsArrowUp />
                           </span>

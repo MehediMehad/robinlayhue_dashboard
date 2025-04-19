@@ -2,14 +2,15 @@
 import { useGetSingleWorkerQuery } from "@/Redux/Api/workerApi";
 import MemberProfileHeader from "./MemberProfileHeader";
 import MemberProfileTableOverview from "./MemberProfileTableOverview";
+import Loading from "@/components/utils/Loading";
 
 const ProfileOverview = ({profileId}: {profileId: string}) => {
   // Fetch the worker data using the query
   const { data: workerData, isLoading } = useGetSingleWorkerQuery(profileId); // Pass profileId to the query
   
   // Handle loading state
-  if (isLoading) return <div>Loading...</div>;
-  console.log(workerData);
+  if (isLoading) return <Loading/>
+
 
 
   return (

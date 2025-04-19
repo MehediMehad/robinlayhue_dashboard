@@ -40,7 +40,7 @@ const TeamManagementOverview = () => {
     console.log({totalPages});
     
   
-    const openPagination = Array.isArray(bookings) && bookings.length > 1 && totalPages > 1;
+    const openPagination = Array.isArray(bookings) && bookings.length > 0 && totalPages > 1;
   
 
   return (
