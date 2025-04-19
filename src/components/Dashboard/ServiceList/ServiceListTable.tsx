@@ -15,6 +15,7 @@ import { useAddAssignMutation } from "@/Redux/Api/bookingApi";
 import ShowToastify from "@/utils/ShowToastify";
 import Loading from "@/components/utils/Loading";
 import { useGetAllWorkerQuery } from "@/Redux/Api/workerApi";
+import moment from 'moment';
 
 export interface TBooking {
   id: string;
@@ -148,7 +149,7 @@ export default function ServiceListTable({
                 {booking.name}
               </TableCell>
               <TableCell className="text-[#414141] text-[16px] px-0">
-                {booking.date}
+                {booking.date ? moment(booking.date).format('DD MMMM YYYY, hh:mm A') : ''}
               </TableCell>
               <TableCell className="text-[#414141] text-[16px] px-0">
                 {booking.location}
