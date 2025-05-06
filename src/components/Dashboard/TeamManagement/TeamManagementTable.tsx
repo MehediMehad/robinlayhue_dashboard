@@ -8,7 +8,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Link from "next/link";
-import { MdDelete } from "react-icons/md";
 
 
 type TRestaurantTableProps = {
@@ -79,9 +78,9 @@ export default function TeamManagementTable({
                     </Button>
                   </Link>
 
-                  <button>
+                  {/* <button>
                     <MdDelete className="text-red-500 hover:text-red-600 mt-[2px]" size={20}/>
-                  </button>
+                  </button> */}
                 </TableCell>
               </TableRow>
             ))}

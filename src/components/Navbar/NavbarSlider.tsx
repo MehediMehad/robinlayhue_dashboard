@@ -36,7 +36,7 @@ const navigation = [
     iconPath: <LiaUsersSolid size={22} />,
   },
   {
-    label: "Customer",
+    label: "Customer List",
     route: "/customers",
     iconPath: <TbUserStar size={22} />,
   },

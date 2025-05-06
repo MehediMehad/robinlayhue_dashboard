@@ -11,7 +11,7 @@ const TopNavbar = () => {
             <AvatarFallback>Default</AvatarFallback>
           </Avatar>
           <div className="">
-            <p className="font-bold text-4 text-primary">GMK Negoce</p>
+            <p className="font-bold text-4 text-primary">Admin</p>
             <p className="text-muted-foreground text-[#747474]">Admin</p>
           </div>
         </div>

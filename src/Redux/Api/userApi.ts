@@ -24,16 +24,18 @@ const userApi = baseApi.injectEndpoints({
           });
         }
         return {
-          url: "/users/all",
+          url: "/user",
           method: "GET",
           params: params,
         };
       },
       providesTags: ["USERS"],
       transformResponse: (response: TResponseRedux<TUser[]>) => {
+        console.log({response});
+        
         return {
-          data: response.data.data,
-          meta: response.data.meta,
+          data: response.data,
+          meta: response.meta,
         };
       },
     }),
@@ -55,39 +57,28 @@ const userApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
-    // TODO: DELETE
-    getAll: builder.query({
+    getAdminDetails: builder.query({
       query: () => ({
-        url: "/users/all",
+        url: "/user/admin",
+        method: "GET",
+      }),
+    }),
+    getTotal: builder.query({
+      query: () => ({
+        url: "/user/admin",
         method: "GET",
       }),
     }),
 
-    allCreators: builder.query({
-      query: ({ page, limit, email }) => ({
-        url: `/user/creator-user-all?page=${page}&limit=${limit}&email=${email}`,
-        method: "GET",
-      }),
-    }),
-    userStatusUpdate: builder.mutation({
-      query: (data) => {
-        console.log("data", data);
-        return {
-          url: `/users/update-status/${data?.id}`,
-          method: "PATCH",
-          body: { status: data?.status },
-        };
-      },
-      invalidatesTags: ["USERS"],}),
+
   }),
 });
 
 export const {
   useLoginUserMutation,
-  useAllCreatorsQuery,
-  useUserStatusUpdateMutation,
   useGetMeQuery,
-  useGetAllQuery,
   useGetAllUsersQuery,
   useGetSingleUsersQuery,
+  useGetAdminDetailsQuery,
+  useGetTotalQuery
 } = userApi;

@@ -7,19 +7,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-// Define the status types and their corresponding styles
-const statusStyles = {
-  ACTIVE: "bg-green-100 text-green-600 hover:bg-green-100",
-  BLOCKED: "bg-red-100 text-red-600 hover:bg-red-100",
-};
-
 type TCustomerTableProps = {
   admins: {
-    id: string;
-    email: string;
-    role: string;
-    createdAt: string;
-    status: keyof typeof statusStyles;
+    id: string
+    name: string
+    email: string
+    role: string
+    location: string
+    status: string
+    createdAt: string
+    updatedAt: string
   }[];
   currentPage: number;
   itemsPerPage: number;
@@ -36,7 +33,7 @@ export default function CustomerTable({
   return (
     <div
       className={`border-[#D9D9D9] bg-white ${
-        openPagination ? "" : "min-h-[calc(100vh-105px)]"
+        openPagination ? "" : "min-h-[calc(100vh-405px)]"
       }`}
     >
       <div className="flex px-10 pb-4">
@@ -53,16 +50,16 @@ export default function CustomerTable({
             </TableRow>
           </TableHeader>
           <TableBody className="">
-            {admins.map((admin, index) => (
+            {admins.map((admin) => (
               <TableRow
                 key={admin.id}
                 className="border-b h-12 hover:bg-[#414141]/5 duration-300"
               >
                 <TableCell className="text-[#414141] text-[16px]  px-0">
-                  {admin.role}
+                  {admin.name}
                 </TableCell>
-                <TableCell className="text-[#414141] text-[16px] px-0">jessica.hanson@example.com </TableCell>
-                <TableCell className="text-[#414141] text-[16px] px-0">Aspen Ridge, Colorado, USA Aspen Ridge, Color...</TableCell>
+                <TableCell className="text-[#414141] text-[16px] px-0">{admin.email}</TableCell>
+                <TableCell className="text-[#414141] text-[16px] px-0">{admin.location}</TableCell>
               </TableRow>
             ))}
           </TableBody>
