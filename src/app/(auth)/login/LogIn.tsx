@@ -100,7 +100,6 @@ const LogIn = () => {
             <input
               type="email"
               name="email"
-              defaultValue={"admin123@gmail.com"}
               required
               className="mt-1 block w-full px-11 py-3 border border-[#E0E0E0] rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-[#E0E0E0] focus:border-[#E0E0E0] transition duration-200 placeholder-gray-400"
               placeholder="Enter your email"
@@ -120,7 +119,6 @@ const LogIn = () => {
               <input
                 type={showPassword == true ? "text" : "password"}
                 name="password"
-                defaultValue={"123456"}
                 required
                 className="mt-1 block w-full px-11 py-3 border border-[#E0E0E0] rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-[#E0E0E0] focus:border-[#E0E0E0] transition duration-200 placeholder-gray-400"
                 placeholder="Enter your password"
