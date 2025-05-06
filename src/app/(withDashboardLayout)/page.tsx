@@ -4,7 +4,7 @@ import { CiMoneyCheck1 } from "react-icons/ci";
 import DashboardContent from "@/components/shared/DashboardContent";
 import { BsArrowUp } from "react-icons/bs";
 import { Badge } from "@/components/ui/badge";
-import ChartOverview from "@/components/Dashboard/Dashboard/ChartOverview";
+// import ChartOverview from "@/components/Dashboard/Dashboard/ChartOverview";
 
 export default function DashboardPage() {
   return (
@@ -95,7 +95,7 @@ export default function DashboardPage() {
               </Card>
 
             </div>
-            <ChartOverview/>
+            {/* <ChartOverview/> */}
           </main>
         </div>
       </DashboardContent>
