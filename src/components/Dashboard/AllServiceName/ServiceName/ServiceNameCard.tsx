@@ -14,7 +14,7 @@ export type TService = {
   Review: number;
 };
 
-const ServiceNameCard = ({ service }: { service: TService }) => {
+const ServiceNameCard = ({ service, onUpdate }: { service: TService,  onUpdate: (updatedService: TService) => void; }) => {
   return (
     <div className="relative group">
       <Image
@@ -24,12 +24,12 @@ const ServiceNameCard = ({ service }: { service: TService }) => {
         height={160}
         className="h-[143px] w-[184px] rounded-xl object-cover"
       />
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/10 to-transparent rounded-xl"></div>
-      <h6 className="z-[2] absolute w-full mx-auto bottom-2 md:px-2 text-sm lg:px-4 py-1 flex justify-center items-center text-[#FFFFFF] bg-[#91D16080] rounded-full">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/60 to-transparent rounded-xl"></div>
+      <h6 className="z-[2] absolute w-[80%] left-[10%] mx-auto bottom-2 md:px-2 text-sm lg:px-4 py-1 flex justify-center items-center text-[#FFFFFF] bg-[#91D16080] rounded-full">
         {service.name}
       </h6>
       <DeleteButton serviceId={service.id} />
-      <EditServiceModal service={service}/>
+      <EditServiceModal service={service} onUpdate={onUpdate}/>
     </div>
   );
 };

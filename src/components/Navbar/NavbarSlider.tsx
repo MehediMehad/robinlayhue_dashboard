@@ -31,7 +31,7 @@ const navigation = [
   { label: "All Service Name", route: "/service-names", iconPath: <MdOutlineDashboard size={22} /> },
   { label: "Booking List", route: "/bookings", iconPath: <IoBagHandleOutline size={22} /> },
   {
-    label: "Team Management",
+    label: "Member Management",
     route: "/team-management",
     iconPath: <LiaUsersSolid size={22} />,
   },

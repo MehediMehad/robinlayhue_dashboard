@@ -27,7 +27,7 @@ import UpdateImagePreviewer from "./UpdateImagePreviewer";
 import UpdateImageUploader from "./UpdateImageUploader";
 import { updateService } from "@/services/service";
 
-export function EditServiceModal({ service }: { service: TService }) {
+export function EditServiceModal({ service, onUpdate }: { service: TService,  onUpdate: (updatedService: TService) => void; }) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>(
@@ -56,7 +56,7 @@ export function EditServiceModal({ service }: { service: TService }) {
     };
 
     try {
-      if (imageFiles.length > 0 || imagePreview.length > 0) {  // Check if there's an image to upload
+      if (imageFiles.length > 0 || imagePreview.length > 0) { 
         const formDataWithImage = new FormData();
         formDataWithImage.append("bodyData", JSON.stringify(bodyData));
 
@@ -67,9 +67,7 @@ export function EditServiceModal({ service }: { service: TService }) {
         const res = await updateService(formDataWithImage, service.id);
 
         if (res?.success) {
-          ShowToastify({
-            success: res.message || "Service updated successfully!",
-          });
+          onUpdate(res.data)
           setIsModalOpen(false);
           form.reset();
         } else {
@@ -82,7 +80,7 @@ export function EditServiceModal({ service }: { service: TService }) {
       }
     } catch (err) {
       console.error("❌ Submission Error:", err);
-      ShowToastify({ error: "Something went wrong. Check console." });
+      ShowToastify({ error: "Body exceeded 1 MB limit." });
     }
   };
 
