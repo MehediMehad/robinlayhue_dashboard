@@ -10,6 +10,7 @@ import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { serviceSchema } from "@/validationSchema/serviceSchema";
+import { Label } from "@/components/ui/label";
 
 const CreateService = () => {
   const [addService] = useCreateServiceMutation();
@@ -70,12 +71,13 @@ const CreateService = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex gap-5">
-            <div className="w-full flex flex-col space-y-4">
+            <div className="w-full flex flex-col space-y-1">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
+                    <Label className="text-[#3a3a3a] text-sm">Name</Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -94,6 +96,7 @@ const CreateService = () => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
+                    <Label className="text-[#3a3a3a] text-sm">Description</Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -112,6 +115,7 @@ const CreateService = () => {
                 name="price"
                 render={({ field }) => (
                   <FormItem>
+                    <Label className="text-[#3a3a3a] text-sm">Price</Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -130,12 +134,13 @@ const CreateService = () => {
                 name="duration"
                 render={({ field }) => (
                   <FormItem>
+                    <Label className="text-[#3a3a3a] text-sm">Duration Examples 1.30 hours</Label>
                     <FormControl>
                       <Input
                         type="text"
                         {...field}
                         value={field.value || ""}
-                        placeholder="Type Duration"
+                        placeholder="Examples 1.30 hours"
                         className="py-5 focus:border-[#a09f9f]  focus-visible:ring-ring"
                       />
                     </FormControl>

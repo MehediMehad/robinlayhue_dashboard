@@ -123,13 +123,16 @@ export default function ServiceListTable({
             <TableHead className="w-[140.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
               Customer Name
             </TableHead>
-            <TableHead className="w-[250.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
+            <TableHead className="w-[140.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
+              Service Name
+            </TableHead>
+            <TableHead className="w-[140.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
               Date & Time
             </TableHead>
-            <TableHead className="w-[250.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
+            <TableHead className="w-[140.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
               Location
             </TableHead>
-            <TableHead className="w-[130px] text-[#262626] text-[16px] px-0 font-semibold">
+            <TableHead className="w-[140.6666666666667px] text-[#262626] text-[16px] px-0 font-semibold">
               Status
             </TableHead>
             {selectedTab === "PENDING" && (
@@ -147,6 +150,9 @@ export default function ServiceListTable({
             >
               <TableCell className="text-[#414141] text-[16px] px-0">
                 {booking.name}
+              </TableCell>
+              <TableCell className="text-[#414141] text-[16px] px-0">
+                {booking.serviceName}
               </TableCell>
               <TableCell className="text-[#414141] text-[16px] px-0">
                 {booking.date ? moment(booking.date).format('DD MMMM YYYY, hh:mm A') : ''}

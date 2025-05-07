@@ -26,7 +26,7 @@ const ServiceImagePreviewer = ({
       {imagePreview.map((preview, index) => (
         <div
           key={index}
-          className="relative w-[270px] h-[215px] rounded-md overflow-hidden border border-dashed border-gray-300"
+          className="relative w-[270px] h-[300px] rounded-md overflow-hidden border border-dashed border-gray-300"
         >
           <Image
             width={500}

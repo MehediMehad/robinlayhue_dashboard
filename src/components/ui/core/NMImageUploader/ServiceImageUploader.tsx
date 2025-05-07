@@ -36,7 +36,7 @@ const ServiceImageUploader = ({
   };
 
   return (
-<div className={cn("flex flex-col items-center justify-center gap-4 h-[215px] w-[120px] md:w-[270px]", className)}>
+<div className={cn("flex flex-col items-center justify-center gap-4 h-[300px] w-[120px] md:w-[270px]", className)}>
       <Input
         id="image-upload"
         type="file"
