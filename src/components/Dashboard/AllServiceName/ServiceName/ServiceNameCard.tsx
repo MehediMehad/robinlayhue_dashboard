@@ -1,10 +1,14 @@
 import Image from "next/image";
 import { DeleteButton } from "./DeleteButton";
+import { EditServiceModal } from "./EditServiceModal";
 
 export type TService = {
   id: string;
   name: string;
   image: string;
+  description: string;
+  price: number;
+  duration: string;
   createdAt: string;
   updatedAt: string;
   Review: number;
@@ -25,6 +29,7 @@ const ServiceNameCard = ({ service }: { service: TService }) => {
         {service.name}
       </h6>
       <DeleteButton serviceId={service.id} />
+      <EditServiceModal service={service}/>
     </div>
   );
 };

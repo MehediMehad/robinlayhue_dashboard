@@ -31,12 +31,11 @@ const serviceApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["SERVICE"],
     }),
-
   }),
 });
 
 export const {
   useCreateServiceMutation,
   useGetAllServiceQuery,
-  useDeleteServiceMutation
+  useDeleteServiceMutation,
 } = serviceApi;
