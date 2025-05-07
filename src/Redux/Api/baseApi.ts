@@ -4,8 +4,8 @@ import Cookies from 'js-cookie';
 export const baseApi = createApi({
     reducerPath: 'baseApi', // The key for this API in the Redux store
     baseQuery: fetchBaseQuery({
-        // baseUrl: 'http://10.0.20.64:6001/api/v1', 
-        baseUrl: 'http://203.161.60.101:6001/api/v1', 
+        baseUrl: 'http://10.0.20.64:6001/api/v1', 
+        // baseUrl: 'http://203.161.60.101:6001/api/v1', 
         prepareHeaders: (headers) => {
             const token = Cookies.get("accessToken") // Assuming token is stored in the auth slice
             
